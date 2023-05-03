@@ -9,6 +9,7 @@ CAR_SIZE = 0.75
 
 # Variables
 car_speed = 5
+car_rotation_amount = 5
 car_rotation = 0
 
 # create the screen
@@ -41,12 +42,15 @@ while True:
     keys = pygame.key.get_pressed() # setup movement
     if keys[left_key]:
         car_x -= car_speed
+        car_rotation = car_rotation_amount
     elif keys[right_key]:
         car_x += car_speed
+        car_rotation = -car_rotation_amount
     if keys[up_key]:
         car_y -= car_speed
     if keys[down_key]:
         car_y += car_speed
+
 
     screen.fill((0, 0, 0))
     screen.blit(car, (car_x, car_y))  # display the car
