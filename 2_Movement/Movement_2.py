@@ -37,7 +37,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-    keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed() # setup movement
     if keys[left_key]:
         car_x -= car_speed
     elif keys[right_key]:
