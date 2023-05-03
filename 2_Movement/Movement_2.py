@@ -24,22 +24,21 @@ car = pygame.transform.scale(car, (100 * CAR_SIZE, 200 * CAR_SIZE))
 
 # get the car's dimensions
 car_width, car_height = car.get_rect().size
-
-# set the car's initial position to the center of the screen
 car_x = (screen_width - car_width) / 2
 car_y = (screen_height - car_height) / 2
 
+left_key = pygame.K_LEFT
+right_key = pygame.K_RIGHT
+up_key = pygame.K_UP
+down_key = pygame.K_DOWN
 # setup main loop
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                car_x -= car_speed
-            if event.key == pygame.K_RIGHT:
-                car_x += car_speed
+    keys = pygame.key.get_pressed()
+    
 
     screen.fill((0, 0, 0))
     screen.blit(car, (car_x, car_y))  # display the car
