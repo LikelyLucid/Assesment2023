@@ -9,6 +9,7 @@ CAR_SIZE = 0.75
 
 # Variables
 car_speed = 5
+car_rotation = 0
 
 # create the screen
 screen_width, screen_height = 600, 800
