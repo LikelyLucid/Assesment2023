@@ -38,7 +38,14 @@ while True:
             pygame.quit()
             quit()
     keys = pygame.key.get_pressed()
-    
+    if keys[left_key]:
+        car_x -= car_speed
+    elif keys[right_key]:
+        car_x += car_speed
+    if keys[up_key]:
+        car_y -= car_speed
+    if keys[down_key]:
+        car_y += car_speed
 
     screen.fill((0, 0, 0))
     screen.blit(car, (car_x, car_y))  # display the car
