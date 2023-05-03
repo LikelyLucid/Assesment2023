@@ -8,3 +8,6 @@ pygame.display.set_caption("Highway Racer") # window title
 
 # clock to control frame rate
 clock = pygame.time.Clock()
+
+# import car
+car = pygame.image.load("../Assets/Player/Car.png")
