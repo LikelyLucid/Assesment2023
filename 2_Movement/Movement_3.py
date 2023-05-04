@@ -51,9 +51,9 @@ while True:
     else:
         car_rotation = 0
 
-    if keys[up_key] and car_y > 0:
+    if keys[up_key] and car_y > 0 + car_height/2:
         car_y -= car_speed
-    if keys[down_key] and car_y < screen_height - car_height:  # subtracting car_height to account for car's height
+    if keys[down_key] and car_y < screen_height - car_height/2:  # subtracting car_height to account for car's height
         car_y += car_speed
 
 
