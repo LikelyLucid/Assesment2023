@@ -13,17 +13,17 @@ pygame.init()
 # Component 1 To Initlize Screen
 screen = pygame.display.set_mode((700, 925))
 pygame.display.set_caption("Car Driving Game")
-game_icon = pygame.image.load('game_icon.png')
-pygame.display.set_icon(game_icon)
+# game_icon = pygame.image.load('game_icon.png')
+# pygame.display.set_icon(game_icon)
 
 # initialize clock to control frame rate
 clock = pygame.time.Clock()
 
 # class for player driven car
 class Driver(pygame.sprite.Sprite):
-    def __init__(self, *groups: AbstractGroup) -> None:
+    def __init__(self, x_pos, y_pos, *groups: AbstractGroup) -> None:
         super().__init__(*groups)
-        self.image = pygame.image.load('driver_car.png')
+        self.image = pygame.image.load('Car.png')
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
