@@ -26,8 +26,8 @@ car = pygame.transform.scale(car, (100 * CAR_SIZE, 200 * CAR_SIZE))
 
 # get the car's dimensions
 car_width, car_height = car.get_rect().size
-car_x = (screen_width - car_width) / 2
-car_y = (screen_height - car_height) / 2
+car_x = (screen_width - car_width/2) / 2
+car_y = (screen_height - car_height/2) / 2
 
 left_key = pygame.K_LEFT
 right_key = pygame.K_RIGHT
