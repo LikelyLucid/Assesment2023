@@ -17,17 +17,17 @@ screen_width, screen_height = 600, 800
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Highway Racer")  # window title
 clock = pygame.time.Clock()
+
+
 # import car from ../Assets/Player/Car.png
 car = pygame.image.load(os.path.join("Assets", "Player", "Car.png"))
 car = pygame.transform.rotate(car, -90)
 car = pygame.transform.scale(car, (100 * CAR_SIZE, 200 * CAR_SIZE))
-
-
-
 # get the car's dimensions
 car_width, car_height = car.get_rect().size
 car_x = (screen_width - car_width/2) / 2
-car_y = (screen_height - car_height/2) / 2
+car_y = screen_height - car_height
+
 
 left_key = pygame.K_LEFT
 right_key = pygame.K_RIGHT
