@@ -39,20 +39,31 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+
     keys = pygame.key.get_pressed() # setup movement
+
     if keys[left_key]:
         car_x -= car_speed
         car_rotation = car_rotation_amount
     elif keys[right_key]:
         car_x += car_speed
         car_rotation = -car_rotation_amount
+    else:
+        car_rotation = 0
+
     if keys[up_key]:
         car_y -= car_speed
     if keys[down_key]:
         car_y += car_speed
 
-
     screen.fill((0, 0, 0))
-    screen.blit(car, (car_x, car_y))  # display the car
+
+    # rotate the car surface
+    rot_car = pygame.transform.rotate(car, car_rotation)
+    rot_rect = rot_car.get_rect(center=car.get_rect(center=(car_x,car_y)).center)
+
+    screen.blit(rot_car, rot_rect)
+
     pygame.display.update()  # update the screen
     clock.tick(60)
+
