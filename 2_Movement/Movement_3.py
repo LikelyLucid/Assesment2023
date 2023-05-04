@@ -6,7 +6,7 @@ pygame.init()
 
 # Constants
 CAR_SIZE = 0.75
-
+ROAD_OFFSET = 0
 # Variables
 car_speed = 5
 car_rotation_amount = 5
@@ -42,10 +42,10 @@ while True:
 
     keys = pygame.key.get_pressed() # setup movement
 
-    if keys[left_key] and car_x > 0:
+    if keys[left_key] and car_x > 0 + car_width/2 + ROAD_OFFSET: # subtracting car_width to account for car's width
         car_x -= car_speed
         car_rotation = car_rotation_amount
-    elif keys[right_key] and car_x < screen_width:
+    elif keys[right_key] and car_x < screen_width - car_width/2 - ROAD_OFFSET:
         car_x += car_speed
         car_rotation = -car_rotation_amount
     else:
@@ -53,8 +53,9 @@ while True:
 
     if keys[up_key] and car_y > 0:
         car_y -= car_speed
-    if keys[down_key] and car_y < screen_height:
+    if keys[down_key] and car_y < screen_height - car_height:  # subtracting car_height to account for car's height
         car_y += car_speed
+
 
     screen.fill((0, 0, 0))
 
