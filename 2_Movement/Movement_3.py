@@ -42,18 +42,18 @@ while True:
 
     keys = pygame.key.get_pressed() # setup movement
 
-    if keys[left_key]:
+    if keys[left_key] and car_x > 0:
         car_x -= car_speed
         car_rotation = car_rotation_amount
-    elif keys[right_key]:
+    elif keys[right_key] and car_x < screen_width:
         car_x += car_speed
         car_rotation = -car_rotation_amount
     else:
         car_rotation = 0
 
-    if keys[up_key]:
+    if keys[up_key] and car_y > 0:
         car_y -= car_speed
-    if keys[down_key]:
+    if keys[down_key] and car_y < screen_height:
         car_y += car_speed
 
     screen.fill((0, 0, 0))
@@ -66,4 +66,5 @@ while True:
 
     pygame.display.update()  # update the screen
     clock.tick(60)
+
 
