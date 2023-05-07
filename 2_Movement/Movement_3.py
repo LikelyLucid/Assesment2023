@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 
 
 # import car from ../Assets/Player/Car.png
-car = pygame.image.load(os.path.join("Assets", "Player", "Car1.png"))
+car = pygame.image.load(os.path.join("Assets", "Player", "Car.png"))
 car = pygame.transform.rotate(car, -90)
 car = pygame.transform.scale(car, (100 * CAR_SIZE, 200 * CAR_SIZE))
 # get the car's dimensions
