@@ -28,7 +28,7 @@ clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
 road = Road(5, screen.get_height())
-all_sprites.add(road)
+all_sprites.add(Road)
 
 running = True
 while running:
