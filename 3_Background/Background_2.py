@@ -2,7 +2,7 @@ import pygame
 import os
 import random
 
-ROAD_SPEED = 5
+ROAD_SPEED = 10
 
 # create the screen
 screen_width, screen_height = 600, 800
