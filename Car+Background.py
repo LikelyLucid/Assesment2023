@@ -3,7 +3,7 @@ import os
 import random
 
 ROAD_SPEED = 10
-CAR_SIZE = 1.5
+CAR_SIZE = 
 ROAD_OFFSET = 0
 
 # Constants
