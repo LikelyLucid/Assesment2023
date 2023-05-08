@@ -22,8 +22,6 @@ clock = pygame.time.Clock()
 
 
 class Road:
-    """A class to represent a road."""
-
     def __init__(self, y, width, height, image):
         self.y = y
         self.width = width
