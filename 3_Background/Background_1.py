@@ -9,11 +9,11 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Highway Racer")  # window title
 
 # import Road from ../Assets/Roads/Road1.png
-background = pygame.image.load(os.path.join("Assets", "Roads", "Road1.jpg"))
+Road1 = pygame.image.load(os.path.join("Assets", "Roads", "Road1.jpg"))
 # rotate 90 degrees
-background = pygame.transform.rotate(background, -90)
+Road1 = pygame.transform.rotate(Road1, -90)
 # scale to fill the entire screen
-background = pygame.transform.scale(background, (screen_width, screen_height))
+Road1 = pygame.transform.scale(Road1, (screen_width, screen_height))
 
 class Road():
     def __init__(self, y, width, height):
@@ -25,11 +25,11 @@ class Road():
     def get_position(self):
         return self.y
     def draw(self):
-        screen.blit(background, (0, self.y))
+        screen.blit(Road1, (0, self.y))
 
 clock = pygame.time.Clock()
 
-road_width, road_height = background.get_size()
+road_width, road_height = Road1.get_size()
 road_count = (screen_height // road_height) + 2
 roads = []
 for i in range(road_count):
