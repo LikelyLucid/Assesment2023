@@ -29,5 +29,31 @@ class Road():
 
 clock = pygame.time.Clock()
 
-screen.blit(background, (0, 0))
+road_width, road_height = background.get_size()
+road_count = (screen_height // road_height) + 2
+roads = []
+for i in range(road_count):
+    road_y = i * road_height
+    road = Road(road_y, road_width, road_height)
+    roads.append(road)
+
 while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+
+    # move all roads down by the speed
+    for road in roads:
+        road.move(road.get_position() + ROAD_SPEED)
+
+        # if the road is off the screen, move it to the top
+        if road.get_position() > screen_height:
+            road.move(road.get_position() - (road_count * road_height))
+
+    # draw the roads
+    for road in roads:
+        road.draw()
+
+    pygame.display.update()
+    clock.tick(60)
