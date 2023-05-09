@@ -54,7 +54,7 @@ car_width, car_height = car.get_rect().size
 car_x = (SCREEN_WIDTH - car_width / 2) / 2
 car_y = SCREEN_HEIGHT - car_height
 car_speed = 5
-car_rotation_amount = 5
+car_rotation_amount = 3
 car_rotation = 0
 
 road_width, road_height = ROADS[0].get_size()
