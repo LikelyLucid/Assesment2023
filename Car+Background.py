@@ -5,7 +5,7 @@ import random
 # Constants
 ROAD_SPEED = 10
 CAR_SIZE = 1
-ROAD_OFFSET = 0
+ROAD_OFFSET = 50
 
 LEFT_KEY = pygame.K_LEFT
 RIGHT_KEY = pygame.K_RIGHT
