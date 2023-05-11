@@ -53,7 +53,8 @@ car = pygame.transform.scale(car, (int(100 * CAR_SIZE), int(200 * CAR_SIZE)))
 car_width, car_height = car.get_rect().size
 car_x = (SCREEN_WIDTH - car_width / 2) / 2
 car_y = SCREEN_HEIGHT - car_height
-car_speed = 10
+car_speed = 3
+car_horizontal_speed = 5
 car_rotation_amount = 3
 car_rotation = 0
 
@@ -76,10 +77,10 @@ while True:
     keys = pygame.key.get_pressed()  # Setup movement
 
     if keys[LEFT_KEY] and car_x > 0 + car_width / 2 + ROAD_OFFSET:
-        car_x -= car_speed
+        car_x -= car_horizontal_speed
         car_rotation = car_rotation_amount
     elif keys[RIGHT_KEY] and car_x < SCREEN_WIDTH - car_width / 2 - ROAD_OFFSET:
-        car_x += car_speed
+        car_x += car_horizontal_speed
         car_rotation = -car_rotation_amount
     else:
         car_rotation = 0
