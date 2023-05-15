@@ -36,7 +36,7 @@ game_running = True
 clock = pygame.time.Clock()
 
 # positions where the cars will spawn
-positions = [(50, 0)]
+positions = [(50, 0), (150, 0), (250, 0), (350, 0), (450, 0), (550, 0)]
 
 while game_running:
     # handle events
