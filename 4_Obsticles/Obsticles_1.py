@@ -1,6 +1,7 @@
 import pygame
 import random
 import os
+
 # initialize pygame
 pygame.init()
 
@@ -34,6 +35,9 @@ cars = []
 game_running = True
 clock = pygame.time.Clock()
 
+# positions where the cars will spawn
+positions = [(50, 0)]
+
 while game_running:
     # handle events
     for event in pygame.event.get():
@@ -42,7 +46,8 @@ while game_running:
 
     # spawn a new car every 1 second
     if len(cars) < 10 and random.random() < 0.01:
-        new_car = Car(random.randint(0, WIDTH - 100), 0)
+        pos = random.choice(positions)
+        new_car = Car(pos[0], pos[1])
         cars.append(new_car)
 
     # move the cars down
