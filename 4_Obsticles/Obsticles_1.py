@@ -46,7 +46,7 @@ while game_running:
 
     # spawn a new car every 1 second
     if len(cars) < 3:
-        pos = random.choice(positions)
+        pos = random.choice(positions[0], positions[1] + )
         new_car = Car(pos[0], pos[1])
         cars.append(new_car)
 
