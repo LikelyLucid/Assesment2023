@@ -46,8 +46,8 @@ while game_running:
 
     # spawn a new car every 1 second
     if len(cars) < 3:
-        pos = random.choice(positions[0], positions[1] - CAR_IMAGE.get_height())
-        new_car = Car(pos[0], pos[1])
+        pos = random.choice(positions)
+        new_car = Car(pos[0], pos[1] - CAR_IMAGE.get_height() - random.randint(0, 10))
         cars.append(new_car)
 
     # move the cars down
