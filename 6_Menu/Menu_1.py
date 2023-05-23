@@ -44,7 +44,7 @@ def start_menu():
         # Update the screen
         pygame.display.flip()
 
-def restart_game_menu(score):
+def restart_game_menu(score, highscore):
     while True:
         # Draw menu background
         screen.fill((255, 255, 255))
@@ -61,6 +61,10 @@ def restart_game_menu(score):
         score_text = font.render("Score: " + str(score), True, (0, 0, 0))
         screen.blit(score_text, (260, 200))
 
+        # Display high score
+        highscore_text = font.render("High Score: " + str(highscore), True, (0, 0, 0))
+        screen.blit(highscore_text, (230, 250))
+
         # Check for events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -73,4 +77,5 @@ def restart_game_menu(score):
 
         # Update the screen
         pygame.display.flip()
-restart_game_menu(123)
+
+restart_game_menu(125, 1000)
