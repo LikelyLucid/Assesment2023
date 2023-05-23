@@ -22,8 +22,8 @@ def start_menu():
 
         start_text = font.render("Start Game", True, (255, 255, 255))
         rect = start_text.get_rect()
-        pygame.draw.rect(, (0, 0, 0), rect)
-        screen.blit(start_text, )
+        pygame.draw.rect(screen, (0, 255, 0), start_text)
+        screen.blit(start_text, (menu_text_x, menu_text_y))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -39,7 +39,7 @@ def restart_menu():
     running = True
 
     while running:
-        screen.blit(menu, (0, 0))
+        screen.fill((255, 255, 255))
 
         restart_button = pygame.Rect(200, 400, 200, 100)
         pygame.draw.rect(screen, (0, 255, 0), restart_button)
