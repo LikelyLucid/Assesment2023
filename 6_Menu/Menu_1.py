@@ -44,4 +44,33 @@ def start_menu():
         # Update the screen
         pygame.display.flip()
 
-def restart_game_menu():
+def restart_game_menu(score):
+    while True:
+        # Draw menu background
+        screen.fill((255, 255, 255))
+
+        # Create restart button rectangle
+        restart_button_rect = pygame.Rect(200, 300, 200, 80)
+        pygame.draw.rect(screen, (0, 255, 0), restart_button_rect)
+
+        # Create restart button text
+        restart_button_text = font.render("Restart", True, (0, 0, 0))
+        screen.blit(restart_button_text, (235, 320))
+
+        # Display score
+        score_text = font.render("Score: " + str(score), True, (0, 0, 0))
+        screen.blit(score_text, (260, 200))
+
+        # Check for events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if restart_button_rect.collidepoint(mouse_pos):
+                    return True
+
+        # Update the screen
+        pygame.display.flip()
+restart_game_menu(123)
