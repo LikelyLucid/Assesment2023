@@ -49,21 +49,34 @@ def restart_game_menu(score, highscore):
         # Draw menu background
         screen.fill((255, 255, 255))
 
+        # Calculate vertical center position
+        center_y = SCREEN_HEIGHT // 2
+
         # Create restart button rectangle
-        restart_button_rect = pygame.Rect(200, 300, 200, 80)
+        restart_button_width = 200
+        restart_button_height = 80
+        restart_button_rect = pygame.Rect(
+            SCREEN_WIDTH // 2 - restart_button_width // 2,
+            center_y - restart_button_height // 2,
+            restart_button_width,
+            restart_button_height
+        )
         pygame.draw.rect(screen, (0, 255, 0), restart_button_rect)
 
         # Create restart button text
         restart_button_text = font.render("Restart", True, (0, 0, 0))
-        screen.blit(restart_button_text, (235, 320))
+        restart_button_text_rect = restart_button_text.get_rect(center=restart_button_rect.center)
+        screen.blit(restart_button_text, restart_button_text_rect)
 
-        # Display score
+        # Calculate score text position
         score_text = font.render("Score: " + str(score), True, (0, 0, 0))
-        screen.blit(score_text, (260, 200))
+        score_text_rect = score_text.get_rect(center=(SCREEN_WIDTH // 2, center_y - 50))
+        screen.blit(score_text, score_text_rect)
 
-        # Display high score
+        # Calculate high score text position
         highscore_text = font.render("High Score: " + str(highscore), True, (0, 0, 0))
-        screen.blit(highscore_text, (230, 250))
+        highscore_text_rect = highscore_text.get_rect(center=(SCREEN_WIDTH // 2, center_y))
+        screen.blit(highscore_text, highscore_text_rect)
 
         # Check for events
         for event in pygame.event.get():
