@@ -11,15 +11,17 @@ CAR_SIZE = 0.75
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # load car image and resize it to 100 x 200
-CAR_IMAGE = pygame.image.load(os.path.join("Assets", "Cars", "Car1.png"))
-CAR_IMAGE = pygame.transform.scale(CAR_IMAGE, (100 * CAR_SIZE, 200 * CAR_SIZE))
-
+CAR_IMAGE_1 = pygame.image.load(os.path.join("Assets", "Cars", "Car1.png"))
+CAR_IMAGE_1 = pygame.transform.scale(CAR_IMAGE_1, (100 * CAR_SIZE, 200 * CAR_SIZE))
+CAR_IMAGE_2 = pygame.image.load(os.path.join("Assets", "Cars", "Car2.png"))
+CAR_IMAGE_2 = pygame.transform.scale(CAR_IMAGE_2, (100 * CAR_SIZE, 200 * CAR_SIZE))
 
 class Car:
     def __init__(self, x, y):
-        self.image = CAR_IMAGE
+        self.image = random.choice([CAR_IMAGE_1, CAR_IMAGE_2])
         self.position = (x, y)
         self.speed = random.randint(1, 3)
+
 
     def move(self):
         x, y = self.position
@@ -54,7 +56,7 @@ while game_running:
                 available_positions.append(pos)
         if available_positions:
             x = random.choice(available_positions)
-            new_car = Car(x, 0 - CAR_IMAGE.get_height() - random.randint(0, 10))
+            new_car = Car(x, 0 - 200 * CAR_SIZE - random.randint(0, 10))
             cars.append(new_car)
             occupied_positions.append(new_car.position[0])
 
