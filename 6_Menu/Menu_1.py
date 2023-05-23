@@ -44,4 +44,4 @@ def start_menu():
         # Update the screen
         pygame.display.flip()
 
-start_menu()
+def restart_game_menu():
