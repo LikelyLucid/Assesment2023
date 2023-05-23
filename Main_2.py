@@ -234,7 +234,11 @@ def game():
                 # Collision detected, handle the collision here
                 print("Collision Detected!")
                 print(score)
-                restart_game_menu(score, 0)
+                highscore = load_highscore()
+                if score > highscore:
+                    highscore = score
+                    save_highscore(highscore)
+                restart_game_menu(score, highscore)
                 car_x = (SCREEN_WIDTH - car_width / 2) / 2
                 car_y = SCREEN_HEIGHT - car_height
                 cars.clear()
