@@ -89,5 +89,5 @@ def restart_game_menu(score, highscore):
 
         pygame.display.flip()
 
-start
+start_menu()
 restart_game_menu(125, 1000)
