@@ -4,37 +4,44 @@ import os
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 800
 
+# Initialize Pygame
+pygame.init()
+
+# Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.font.init()
+pygame.display.set_caption("Start Menu")
+
+# Load assets
+menu_image = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
+
+# Create font
 font = pygame.font.SysFont("Arial", 40)
 
-menu = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
-menu = pygame.transform.scale(menu, (SCREEN_WIDTH, SCREEN_HEIGHT))  # Resize the menu image to fit the screen
-
-score = 158
-
+# Function to handle the start menu
 def start_menu():
-    running = True
+    while True:
+        # Draw menu background image
+        screen.blit(menu_image, (0, 0))
 
-    while running:
+        # Create button rectangle
+        button_rect = pygame.Rect(200, 300, 200, 80)
+        pygame.draw.rect(screen, (255, 0, 0), button_rect)
+
+        # Create button text
+        button_text = font.render("Start Game", True, (255, 255, 255))
+        screen.blit(button_text, (220, 320))
+
+        # Check for events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
                 pygame.quit()
-                quit()
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if button_rect.collidepoint(mouse_pos):
+                    return "start_game"
 
-        screen.blit(menu, (0, 0))  # Draw the menu image on the screen
-
-        # Draw the "Start Game" button
-        start_button = pygame.Rect(SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2 - 50, 200, 100)
-        pygame.draw.rect(screen, (255, 0, 0), start_button)
-        start_text = font.render("Start Game", True, (255, 255, 255))
-        screen.blit(start_text, (SCREEN_WIDTH/2 - start_text.get_width()/2, SCREEN_HEIGHT/2 - start_text.get_height()/2))
-
+        # Update the screen
         pygame.display.flip()
-
-def restart_menu():
-    # Code for the restart menu goes here
-    pass
 
 start_menu()
