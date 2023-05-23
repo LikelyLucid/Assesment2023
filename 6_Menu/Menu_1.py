@@ -75,10 +75,9 @@ def restart_game_menu(score, highscore):
 
         # Calculate high score text position
         highscore_text = font.render("High Score: " + str(highscore), True, (0, 0, 0))
-        highscore_text_rect = highscore_text.get_rect(center=(SCREEN_WIDTH // 2, center_y-100))
+        highscore_text_rect = highscore_text.get_rect(center=(SCREEN_WIDTH // 2, center_y - 100))
         screen.blit(highscore_text, highscore_text_rect)
 
-        # Check for events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -88,7 +87,7 @@ def restart_game_menu(score, highscore):
                 if restart_button_rect.collidepoint(mouse_pos):
                     return True
 
-        # Update the screen
         pygame.display.flip()
 
+start
 restart_game_menu(125, 1000)
