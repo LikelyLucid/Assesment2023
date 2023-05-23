@@ -21,8 +21,14 @@ def start_menu():
 
 
         start_text = font.render("Start Game", True, (255, 255, 255))
-        rect = start_text.get_rect()
-        pygame.draw.rect(screen, (0, 255, 0), start_text)
+        menu_rect = start_text.get_rect()
+        background_rect = pygame.Rect(
+            menu_rect.left - 5,
+            menu_rect.top - 5,
+            menu_rect.width + 10,
+            menu_rect.height + 10,
+        )
+        pygame.draw.rect(screen, (0, 255, 0), background_rect)
         screen.blit(start_text, (menu_text_x, menu_text_y))
 
         for event in pygame.event.get():
