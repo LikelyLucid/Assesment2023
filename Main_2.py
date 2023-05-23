@@ -52,6 +52,7 @@ menu_image = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
 
 # Classes
 
+
 class Road:
     def __init__(self, y, width, height, image):  # Set the initial data
         self.y = y
@@ -85,6 +86,7 @@ class Car:
 
 # Functions
 
+
 def load_highscore():
     try:
         with open(os.path.join("Assets", "HighScore", "highscore.txt"), "r") as file:
@@ -93,9 +95,11 @@ def load_highscore():
         print("error")
         return 0
 
+
 def save_highscore(highscore):
     with open(os.path.join("Assets", "HighScore", "highscore.txt"), "w") as file:
         file.write(str(highscore))
+
 
 def start_menu():
     while True:
@@ -123,6 +127,7 @@ def start_menu():
         # Update the screen
         pygame.display.flip()
 
+
 def restart_game_menu(score, highscore):
     while True:
         # Draw menu background
@@ -138,23 +143,29 @@ def restart_game_menu(score, highscore):
             SCREEN_WIDTH // 2 - restart_button_width // 2,
             center_y - restart_button_height // 2,
             restart_button_width,
-            restart_button_height
+            restart_button_height,
         )
         pygame.draw.rect(screen, (255, 0, 0), restart_button_rect)
 
         # Create restart button text
         restart_button_text = font.render("Restart", True, (0, 0, 0))
-        restart_button_text_rect = restart_button_text.get_rect(center=restart_button_rect.center)
+        restart_button_text_rect = restart_button_text.get_rect(
+            center=restart_button_rect.center
+        )
         screen.blit(restart_button_text, restart_button_text_rect)
 
         # Calculate score text position
         score_text = font.render("Score: " + str(score), True, (0, 0, 0))
-        score_text_rect = score_text.get_rect(center=(SCREEN_WIDTH // 2, center_y - 200))
+        score_text_rect = score_text.get_rect(
+            center=(SCREEN_WIDTH // 2, center_y - 200)
+        )
         screen.blit(score_text, score_text_rect)
 
         # Calculate high score text position
         highscore_text = font.render("High Score: " + str(highscore), True, (0, 0, 0))
-        highscore_text_rect = highscore_text.get_rect(center=(SCREEN_WIDTH // 2, center_y - 100))
+        highscore_text_rect = highscore_text.get_rect(
+            center=(SCREEN_WIDTH // 2, center_y - 100)
+        )
         screen.blit(highscore_text, highscore_text_rect)
 
         for event in pygame.event.get():
@@ -170,6 +181,7 @@ def restart_game_menu(score, highscore):
 
 
 # Game Setup
+
 
 def game():
     # Create road objects
@@ -297,12 +309,15 @@ def game():
         pygame.display.update()
         clock.tick(60)
 
+
 # Main program
+
 
 def main():
     while True:
         option = start_menu()
         if option == "start_game":
             game()
+
 
 main()
