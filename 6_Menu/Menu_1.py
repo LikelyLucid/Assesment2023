@@ -11,18 +11,19 @@ font = pygame.font.SysFont("Arial", 40)
 menu = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
 
 score = 158
-
+menu_text_x, menu_text_y = 225, 330
 def start_menu():
     running = True
 
     while running:
         screen.blit(menu, (0, 0))
 
-        start_button = pygame.Rect(200, 300, 200, 100)
-        pygame.draw.rect(screen, (255, 0, 0), start_button)
+
 
         start_text = font.render("Start Game", True, (255, 255, 255))
-        screen.blit(start_text, (225, 330))
+        rect = start_text.get_rect()
+        pygame.draw.rect(, (0, 0, 0), rect)
+        screen.blit(start_text, )
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
