@@ -260,6 +260,7 @@ def game():
         for road in roads:
             road.move(road.get_position() + ROAD_SPEED + everything_speed)
             if road.get_position() > SCREEN_HEIGHT:
+                score += 1
                 road_image = random.choice(ROADS)
                 road.move(road.get_position() - (road_count * road_height))
                 road.image = road_image
@@ -278,7 +279,6 @@ def game():
         for car_ob in cars:
             car_ob.move(everything_speed)
             if car_ob.off_screen():
-                score += 1
                 cars.remove(car_ob)
                 occupied_positions.remove(car_ob.position[0])
 
