@@ -232,9 +232,12 @@ def game():
         else:
             car_rotation = 0
 
-        if keys[UP_KEY] and car_y > 0 + car_height / 2:
+        if keys[UP_KEY]:
             if everything_speed < car_speed:
                 everything_speed += car_acceleration
+        elif keys[DOWN_KEY]:
+            if everything_speed > -car_speed + 3:
+                everything_speed -= car_acceleration
         else:
             everything_speed = 0
 
