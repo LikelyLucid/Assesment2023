@@ -210,7 +210,7 @@ def game():
     occupied_positions = []
     positions = [170, 300, 430]
     for i in range(len(positions)):
-        positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE
+        positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE # type: ignore
 
     score = 0
 
