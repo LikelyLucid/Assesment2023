@@ -48,9 +48,8 @@ car = pygame.image.load(os.path.join("Assets", "Player", "Car.png"))
 car = pygame.transform.rotate(car, -90)
 car = pygame.transform.scale(car, (int(100 * CAR_SIZE), int(200 * CAR_SIZE)))
 
-menu_image = pygame.image.load(
-    os.path.join("Assets", "Menu", "Start_Menu.png")
-)
+menu_image = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
+
 
 # Classes
 class Road:
@@ -101,11 +100,14 @@ def save_highscore(highscore):
 
 def start_menu():
     while True:
+        # Draw menu background image
         screen.blit(menu_image, (0, 0))
 
+        # Create button rectangle
         button_rect = pygame.Rect(200, 300, 200, 80)
         pygame.draw.rect(screen, (255, 0, 0), button_rect)
 
+        # Create button text
         button_text = font.render("Start Game", True, (255, 255, 255))
         screen.blit(button_text, (220, 320))
 
@@ -123,10 +125,13 @@ def start_menu():
 
 def restart_game_menu(score, highscore):
     while True:
+        # Draw menu background
         screen.fill((255, 255, 255))
 
+        # Calculate vertical center position
         center_y = SCREEN_HEIGHT // 2
 
+        # Create restart button rectangle
         restart_button_width = 200
         restart_button_height = 80
         restart_button_rect = pygame.Rect(
@@ -137,18 +142,21 @@ def restart_game_menu(score, highscore):
         )
         pygame.draw.rect(screen, (255, 0, 0), restart_button_rect)
 
+        # Create restart button text
         restart_button_text = font.render("Restart", True, (0, 0, 0))
         restart_button_text_rect = restart_button_text.get_rect(
             center=restart_button_rect.center
         )
         screen.blit(restart_button_text, restart_button_text_rect)
 
+        # Calculate score text position
         score_text = font.render(f"Score: {str(score)}", True, (0, 0, 0))
         score_text_rect = score_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 200)
         )
         screen.blit(score_text, score_text_rect)
 
+        # Calculate high score text position
         highscore_text = font.render(f"High Score: {str(highscore)}", True, (0, 0, 0))
         highscore_text_rect = highscore_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 100)
@@ -168,6 +176,7 @@ def restart_game_menu(score, highscore):
 
 
 def game():
+    # Create road objects
     road_width, road_height = ROADS[0].get_size()
     road_count = (SCREEN_HEIGHT // road_height) + 2
     roads = []
@@ -177,6 +186,7 @@ def game():
         road = Road(road_y, road_width, road_height, road_image)
         roads.append(road)
 
+    # Create player car object
     car_width, car_height = car.get_rect().size
     car_x = (SCREEN_WIDTH - car_width / 2) / 2
     car_y = SCREEN_HEIGHT - car_height
@@ -187,6 +197,7 @@ def game():
     car_acceleration = 0.2
     everything_speed = 0
 
+    # Create obstacle cars list
     cars = []
     occupied_positions = []
     positions = [170, 300, 430]
@@ -225,6 +236,7 @@ def game():
         for car_ob in cars:
             ob_rect = car_ob.image.get_rect(topleft=car_ob.position)
             if car_rect.colliderect(ob_rect):
+                # Collision detected, handle the collision here
                 print("Collision Detected!")
                 print(score)
                 highscore = load_highscore()
