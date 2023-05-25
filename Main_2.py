@@ -212,7 +212,7 @@ def game():
     for i in range(len(positions)):
         positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE # type: ignore
 
-    score = 0
+    score = -2
 
     # Game loop
     while True:
@@ -258,7 +258,7 @@ def game():
                 car_y = SCREEN_HEIGHT - car_height
                 cars.clear()
                 occupied_positions.clear()
-                score = 0
+                score = -2
 
         for road in roads:
             road.move(road.get_position() + ROAD_SPEED + everything_speed)
