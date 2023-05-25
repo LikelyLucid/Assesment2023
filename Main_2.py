@@ -286,7 +286,7 @@ def game():
                 occupied_positions.remove(car_ob.position[0])
 
         screen.fill((0, 0, 0))
-        score_text = font.render("Score: " + str({}), True, (0, 0, 0))
+        score_text = font.render("Score: " + str(score), True, (0, 0, 0))
         score_rect = score_text.get_rect()
         score_rect.bottomleft = (10, SCREEN_HEIGHT - 10)
         for road in roads:
