@@ -5,7 +5,7 @@ import random
 # Constants
 ROAD_SPEED = 10
 CAR_SIZE = 1
-OBSTICLE_CAR_SIZE = 1.2
+OBSTACLE_CAR_SIZE = 1.2
 ROAD_OFFSET = 50
 
 LEFT_KEY = pygame.K_LEFT
@@ -37,11 +37,11 @@ for i in range(1, 5):
 
 CAR_IMAGE_1 = pygame.image.load(os.path.join("Assets", "Cars", "Car1.png"))
 CAR_IMAGE_1 = pygame.transform.scale(
-    CAR_IMAGE_1, (100 * OBSTICLE_CAR_SIZE, 200 * OBSTICLE_CAR_SIZE)
+    CAR_IMAGE_1, (int(100 * OBSTACLE_CAR_SIZE), int(200 * OBSTACLE_CAR_SIZE))
 )
 CAR_IMAGE_2 = pygame.image.load(os.path.join("Assets", "Cars", "Car2.png"))
 CAR_IMAGE_2 = pygame.transform.scale(
-    CAR_IMAGE_2, (100 * OBSTICLE_CAR_SIZE, 200 * OBSTICLE_CAR_SIZE)
+    CAR_IMAGE_2, (int(100 * OBSTACLE_CAR_SIZE), int(200 * OBSTACLE_CAR_SIZE))
 )
 
 car = pygame.image.load(os.path.join("Assets", "Player", "Car.png"))
@@ -49,45 +49,42 @@ car = pygame.transform.rotate(car, -90)
 car = pygame.transform.scale(car, (int(100 * CAR_SIZE), int(200 * CAR_SIZE)))
 
 menu_image = pygame.image.load(
-    os.path.join("Assets", "Menu", "Start_Menu.png"))
+    os.path.join("Assets", "Menu", "Start_Menu.png")
+)
 
 # Classes
-
-
 class Road:
-    def __init__(self, y, width, height, image):  # Set the initial data
+    def __init__(self, y, width, height, image):
         self.y = y
         self.width = width
         self.height = height
         self.image = image
 
-    def move(self, new_y):  # Move the road
+    def move(self, new_y):
         self.y = new_y
 
-    def get_position(self):  # Get the position
+    def get_position(self):
         return self.y
 
-    def draw(self):  # Draw the road
+    def draw(self):
         screen.blit(self.image, (0, self.y))
 
 
 class Car:
-    def __init__(self, x, y):  # Set the initial data
+    def __init__(self, x, y):
         self.image = random.choice([CAR_IMAGE_1, CAR_IMAGE_2])
         self.position = (x, y)
         self.speed = random.randint(1, 10)
 
-    def move(self, added_speed):  # Move the car
+    def move(self, added_speed):
         x, y = self.position
         self.position = (x, y + self.speed + added_speed)
 
-    def off_screen(self):  # Check if the car is off the screen
+    def off_screen(self):
         return self.position[1] > SCREEN_HEIGHT
 
 
 # Functions
-
-
 def load_highscore():
     try:
         with open(os.path.join("Assets", "HighScore", "highscore.txt"), "r") as file:
@@ -104,18 +101,14 @@ def save_highscore(highscore):
 
 def start_menu():
     while True:
-        # Draw menu background image
         screen.blit(menu_image, (0, 0))
 
-        # Create button rectangle
         button_rect = pygame.Rect(200, 300, 200, 80)
         pygame.draw.rect(screen, (255, 0, 0), button_rect)
 
-        # Create button text
         button_text = font.render("Start Game", True, (255, 255, 255))
         screen.blit(button_text, (220, 320))
 
-        # Check for events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -125,19 +118,15 @@ def start_menu():
                 if button_rect.collidepoint(mouse_pos):
                     return "start_game"
 
-        # Update the screen
         pygame.display.flip()
 
 
 def restart_game_menu(score, highscore):
     while True:
-        # Draw menu background
         screen.fill((255, 255, 255))
 
-        # Calculate vertical center position
         center_y = SCREEN_HEIGHT // 2
 
-        # Create restart button rectangle
         restart_button_width = 200
         restart_button_height = 80
         restart_button_rect = pygame.Rect(
@@ -148,21 +137,18 @@ def restart_game_menu(score, highscore):
         )
         pygame.draw.rect(screen, (255, 0, 0), restart_button_rect)
 
-        # Create restart button text
         restart_button_text = font.render("Restart", True, (0, 0, 0))
         restart_button_text_rect = restart_button_text.get_rect(
             center=restart_button_rect.center
         )
         screen.blit(restart_button_text, restart_button_text_rect)
 
-        # Calculate score text position
         score_text = font.render(f"Score: {str(score)}", True, (0, 0, 0))
         score_text_rect = score_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 200)
         )
         screen.blit(score_text, score_text_rect)
 
-        # Calculate high score text position
         highscore_text = font.render(f"High Score: {str(highscore)}", True, (0, 0, 0))
         highscore_text_rect = highscore_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 100)
@@ -181,11 +167,7 @@ def restart_game_menu(score, highscore):
         pygame.display.flip()
 
 
-# Game Setup
-
-
 def game():
-    # Create road objects
     road_width, road_height = ROADS[0].get_size()
     road_count = (SCREEN_HEIGHT // road_height) + 2
     roads = []
@@ -195,7 +177,6 @@ def game():
         road = Road(road_y, road_width, road_height, road_image)
         roads.append(road)
 
-    # Create player car object
     car_width, car_height = car.get_rect().size
     car_x = (SCREEN_WIDTH - car_width / 2) / 2
     car_y = SCREEN_HEIGHT - car_height
@@ -206,15 +187,14 @@ def game():
     car_acceleration = 0.2
     everything_speed = 0
 
-    # Create obstacle cars list
     cars = []
     occupied_positions = []
     positions = [170, 300, 430]
     for i in range(len(positions)):
-        positions[i] = positions[i] - 200 / 4 # type: ignore
+        positions[i] = positions[i] - 200 / 4
+
     score = -2
 
-    # Game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -241,13 +221,10 @@ def game():
         else:
             everything_speed = 0
 
-        # Check collision between the car and car obstacles
-        car_rect = car.get_rect(
-            center=car.get_rect(center=(car_x, car_y)).center)
+        car_rect = car.get_rect(center=car.get_rect(center=(car_x, car_y)).center)
         for car_ob in cars:
             ob_rect = car_ob.image.get_rect(topleft=car_ob.position)
             if car_rect.colliderect(ob_rect):
-                # Collision detected, handle the collision here
                 print("Collision Detected!")
                 print(score)
                 highscore = load_highscore()
@@ -288,16 +265,14 @@ def game():
 
         screen.fill((0, 0, 0))
         display_score = max(0, score)
-        score_text = font.render(
-            "Score: " + str(display_score), True, (0, 0, 0))
+        score_text = font.render("Score: " + str(display_score), True, (0, 0, 0))
         score_rect = score_text.get_rect()
         score_rect.bottomleft = (10, SCREEN_HEIGHT - 10)
         for road in roads:
             road.draw()
 
         rot_car = pygame.transform.rotate(car, car_rotation)
-        rot_rect = rot_car.get_rect(
-            center=car.get_rect(center=(car_x, car_y)).center)
+        rot_rect = rot_car.get_rect(center=car.get_rect(center=(car_x, car_y)).center)
 
         for car_ob in cars:
             rect = car_ob.image.get_rect(topleft=car_ob.position)
@@ -318,7 +293,6 @@ def game():
         clock.tick(60)
 
 
-# Main program
 def main():
     while True:
         option = start_menu()
