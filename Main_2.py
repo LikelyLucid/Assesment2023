@@ -314,9 +314,8 @@ def game():
         pygame.display.update()
         clock.tick(60)
 
+
 # Main program
-
-
 def main():
     while True:
         option = start_menu()
