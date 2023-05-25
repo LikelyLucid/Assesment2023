@@ -48,7 +48,8 @@ car = pygame.image.load(os.path.join("Assets", "Player", "Car.png"))
 car = pygame.transform.rotate(car, -90)
 car = pygame.transform.scale(car, (int(100 * CAR_SIZE), int(200 * CAR_SIZE)))
 
-menu_image = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
+menu_image = pygame.image.load(
+    os.path.join("Assets", "Menu", "Start_Menu.png"))
 
 # Classes
 
@@ -155,14 +156,14 @@ def restart_game_menu(score, highscore):
         screen.blit(restart_button_text, restart_button_text_rect)
 
         # Calculate score text position
-        score_text = font.render("Score: " + str(score), True, (0, 0, 0))
+        score_text = font.render(f"Score: {str(score)}", True, (0, 0, 0))
         score_text_rect = score_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 200)
         )
         screen.blit(score_text, score_text_rect)
 
         # Calculate high score text position
-        highscore_text = font.render("High Score: " + str(highscore), True, (0, 0, 0))
+        highscore_text = font.render(f"High Score: {str(highscore)}", True, (0, 0, 0))
         highscore_text_rect = highscore_text.get_rect(
             center=(SCREEN_WIDTH // 2, center_y - 100)
         )
@@ -210,8 +211,7 @@ def game():
     occupied_positions = []
     positions = [170, 300, 430]
     for i in range(len(positions)):
-        positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE  # type: ignore
-
+        positions[i] = positions[i] - 200 / 4 # type: ignore
     score = -2
 
     # Game loop
@@ -242,7 +242,8 @@ def game():
             everything_speed = 0
 
         # Check collision between the car and car obstacles
-        car_rect = car.get_rect(center=car.get_rect(center=(car_x, car_y)).center)
+        car_rect = car.get_rect(
+            center=car.get_rect(center=(car_x, car_y)).center)
         for car_ob in cars:
             ob_rect = car_ob.image.get_rect(topleft=car_ob.position)
             if car_rect.colliderect(ob_rect):
@@ -287,14 +288,16 @@ def game():
 
         screen.fill((0, 0, 0))
         display_score = max(0, score)
-        score_text = font.render("Score: " + str(display_score), True, (0, 0, 0))
+        score_text = font.render(
+            "Score: " + str(display_score), True, (0, 0, 0))
         score_rect = score_text.get_rect()
         score_rect.bottomleft = (10, SCREEN_HEIGHT - 10)
         for road in roads:
             road.draw()
 
         rot_car = pygame.transform.rotate(car, car_rotation)
-        rot_rect = rot_car.get_rect(center=car.get_rect(center=(car_x, car_y)).center)
+        rot_rect = rot_car.get_rect(
+            center=car.get_rect(center=(car_x, car_y)).center)
 
         for car_ob in cars:
             rect = car_ob.image.get_rect(topleft=car_ob.position)
