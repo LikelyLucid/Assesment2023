@@ -210,7 +210,7 @@ def game():
     occupied_positions = []
     positions = [170, 300, 430]
     for i in range(len(positions)):
-        positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE # type: ignore
+        positions[i] = positions[i] - 200 / 4 * OBSTICLE_CAR_SIZE  # type: ignore
 
     score = -2
 
@@ -286,7 +286,8 @@ def game():
                 occupied_positions.remove(car_ob.position[0])
 
         screen.fill((0, 0, 0))
-        score_text = font.render("Score: " + str(score), True, (0, 0, 0))
+        display_score = max(0, score)
+        score_text = font.render("Score: " + str(display_score), True, (0, 0, 0))
         score_rect = score_text.get_rect()
         score_rect.bottomleft = (10, SCREEN_HEIGHT - 10)
         for road in roads:
@@ -312,7 +313,6 @@ def game():
         screen.blit(score_text, score_rect)
         pygame.display.update()
         clock.tick(60)
-
 
 # Main program
 
