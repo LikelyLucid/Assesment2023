@@ -204,7 +204,9 @@ def game():
     for i in range(len(positions)):
         positions[i] = positions[i] - 200 / 4
 
-    score = -2
+    score = (
+        -2
+    )  # needed because when I switched to distance based score, it started some players with 2 as score
     highscore = load_highscore()
 
     while True:
