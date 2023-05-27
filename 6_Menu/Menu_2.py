@@ -39,6 +39,7 @@ def start_menu():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if button_rect.collidepoint(mouse_pos):
+                    print("pressed start button")
                     return "start_game"
 
         # Update the screen
@@ -85,6 +86,7 @@ def restart_game_menu(score, highscore):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if restart_button_rect.collidepoint(mouse_pos):
+                    print("pressed restart button")
                     return True
 
         pygame.display.flip()
