@@ -39,6 +39,7 @@ def start_menu():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if button_rect.collidepoint(mouse_pos):
+                    print("pressed start button")
                     return "start_game"
 
         # Update the screen
