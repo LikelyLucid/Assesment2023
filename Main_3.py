@@ -59,47 +59,49 @@ menu_image = pygame.image.load(os.path.join("Assets", "Menu", "Start_Menu.png"))
 
 # Classes
 class Road:
-    def __init__(self, y, width, height, image):
+    def __init__(self, y, width, height, image):  # Initialize road
         self.y = y
         self.width = width
         self.height = height
         self.image = image
 
-    def move(self, new_y):
+    def move(self, new_y):  # Move road
         self.y = new_y
 
-    def get_position(self):
+    def get_position(self):  # Get position
         return self.y
 
-    def draw(self):
+    def draw(self):  # Draw road
         screen.blit(self.image, (0, self.y))
 
 
 class Car:
-    def __init__(self, x, y):
+    def __init__(self, x, y):  # Initialize car
         self.image = random.choice([CAR_IMAGE_1, CAR_IMAGE_2])
         self.position = (x, y)
         self.speed = random.randint(OBSTACLE_MIN_SPEED, OBSTACLE_MAX_SPEED)
 
-    def move(self, added_speed):
+    def move(self, added_speed):  # Moves car
         x, y = self.position
         self.position = (x, y + self.speed + added_speed)
 
-    def off_screen(self):
+    def off_screen(self):  # Checks if car is off screen
         return self.position[1] > SCREEN_HEIGHT
 
 
 # Functions
-def load_highscore():
+def load_highscore():  # Load highscore
     try:
-        with open(os.path.join("Assets", "HighScore", "highscore.txt"), "r") as file:
+        with open(
+            os.path.join("Assets", "HighScore", "highscore.txt"), "r"
+        ) as file:  # Read highscore
             return int(file.read())
-    except FileNotFoundError:
+    except FileNotFoundError:  # If file not found
         print("Highscore file not found.")
         return 0
 
 
-def save_highscore(highscore):
+def save_highscore(highscore):  # Save highscore
     with open(os.path.join("Assets", "HighScore", "highscore.txt"), "w") as file:
         file.write(str(highscore))
 
@@ -280,19 +282,27 @@ def game():
         if len(cars) < 2 and random.randint(0, 100) == 0:  # Spawn cars
             available_positions = []
             for pos in positions:
-                if pos not in [car.position[0] for car in cars]:  # Check if the position is already occupied
+                if pos not in [
+                    car.position[0] for car in cars
+                ]:  # Check if the position is already occupied
                     available_positions.append(pos)
             if available_positions:  # If there are available positions
                 x = random.choice(available_positions)  # Pick a random position
-                new_car = Car(x, 0 - 200 * CAR_SIZE - random.randint(0, 2000))  # Create new car
+                new_car = Car(
+                    x, 0 - 200 * CAR_SIZE - random.randint(0, 2000)
+                )  # Create new car
                 cars.append(new_car)
-                occupied_positions.append(new_car.position[0])  # Add to occupied positions
+                occupied_positions.append(
+                    new_car.position[0]
+                )  # Add to occupied positions
 
         for car_ob in cars:
             car_ob.move(everything_speed)  # Move cars
             if car_ob.off_screen():  # Check if car is off screen
                 cars.remove(car_ob)  # Remove from cars
-                occupied_positions.remove(car_ob.position[0])  # Remove from occupied positions
+                occupied_positions.remove(
+                    car_ob.position[0]
+                )  # Remove from occupied positions
 
         screen.fill((0, 0, 0))
         display_score = max(0, score)
