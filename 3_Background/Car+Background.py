@@ -1,3 +1,8 @@
+"""
+Created May 8th 2023
+Michael Mckellar
+Car movement and moving backrounds merged
+"""
 import pygame
 import os
 import random

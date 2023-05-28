@@ -1,3 +1,8 @@
+"""
+Created May 23rd 2023
+Michael Mckellar
+Scoring system
+"""
 import pygame
 import os
 import random

@@ -1,3 +1,8 @@
+"""
+Created May 24th 2023
+Michael Mckellar
+Final Game
+"""
 import pygame
 import os
 import random
