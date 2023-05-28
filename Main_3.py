@@ -210,6 +210,7 @@ def game():
     everything_speed = 0
 
     # Create obstacle cars list
+    obsticle_min_speed, obsticle_max_speed = 
     cars = []
     occupied_positions = []
     positions = [170, 300, 430]
