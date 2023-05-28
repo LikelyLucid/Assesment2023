@@ -12,6 +12,7 @@ ROAD_SPEED = 10
 CAR_SIZE = 1
 OBSTACLE_CAR_SIZE = 1.2
 ROAD_OFFSET = 50
+OBSTACLE_MIN_SPEED, OBSTACLE_MAX_SPEED = 1, 10
 
 LEFT_KEY = pygame.K_LEFT
 RIGHT_KEY = pygame.K_RIGHT
@@ -79,7 +80,7 @@ class Car:
     def __init__(self, x, y):
         self.image = random.choice([CAR_IMAGE_1, CAR_IMAGE_2])
         self.position = (x, y)
-        self.speed = random.randint(1, 10)
+        self.speed = random.randint(OBSTACLE_MIN_SPEED, OBSTACLE_MAX_SPEED)
 
     def move(self, added_speed):
         x, y = self.position
@@ -210,7 +211,6 @@ def game():
     everything_speed = 0
 
     # Create obstacle cars list
-    obsticle_min_speed, obsticle_max_speed = 
     cars = []
     occupied_positions = []
     positions = [170, 300, 430]
