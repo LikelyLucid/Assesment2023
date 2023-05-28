@@ -1,5 +1,5 @@
 """
-Created may 2nd
+Created May 2nd
 Michael Mckellar
 main program setup
 """
