@@ -1,7 +1,7 @@
 """
-Created May 2nd
+Created May 2nd 2023
 Michael Mckellar
-main program setup
+Main program setup
 """
 import pygame
 # initialize pygame

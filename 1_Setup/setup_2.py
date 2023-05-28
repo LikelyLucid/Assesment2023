@@ -1,3 +1,8 @@
+"""
+Created May 2nd 2023
+Michael Mckellar
+Main program setup
+"""
 import pygame
 # initialize pygame
 pygame.init()
