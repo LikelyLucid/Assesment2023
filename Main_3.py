@@ -148,7 +148,12 @@ def restart_game_menu(score, highscore):
             center=restart_button_rect.center
         )
         screen.blit(restart_button_text, restart_button_text_rect)
-
+        # Show you crashed text
+        crash_text = font.render("You crashed!", True, (0, 0, 0))
+        crash_text_rect = crash_text.get_rect(
+            center=(SCREEN_WIDTH // 2, center_y - 300)
+        )
+        screen.blit(crash_text, crash_text_rect)
         # Calculate score text position
         score_text = font.render(f"Score: {str(score)}", True, (0, 0, 0))
         score_text_rect = score_text.get_rect(
