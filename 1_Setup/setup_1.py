@@ -1,4 +1,8 @@
-
+"""
+Created may 2nd
+Michael Mckellar
+main program setup
+"""
 import pygame
 # initialize pygame
 pygame.init()
